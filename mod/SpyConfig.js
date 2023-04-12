@@ -151,6 +151,30 @@ let RspyList = {
             RunPanel: [0],
             Disable: false,
         },
+        {   
+            Name: '收藏大师-加购有礼）',
+            Script: 'KingRan_KR/jd_txzj_cart_item.js',
+            ListenEnv: ['jd_cart_item_activityUrl',],
+            SetEnv: {
+                jd_cart_item_activityUrl: 'jd_cart_item_activityUrl',
+            },
+            TimeOut: 0, 
+            Interval: 0,
+            RunPanel: [0],
+            Disable: false,
+        },
+        {   
+            Name: '收藏大师-关注有礼）',
+            Script: 'KingRan_KR/jd_txzj_collect_item.js',
+            ListenEnv: ['jd_collect_item_activityUrl',],
+            SetEnv: {
+                jd_collect_item_activityUrl: 'jd_collect_item_activityUrl',
+            },
+            TimeOut: 0, 
+            Interval: 0,
+            RunPanel: [0],
+            Disable: false,
+        },
         
     ],
     /* 监控列表 */
