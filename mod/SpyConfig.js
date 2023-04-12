@@ -24,16 +24,16 @@ let RspyList = {
         },
 		//以下给出几个示例
         {
-            Name: '无线',
-            Script: 'jd_task_wuxian.js',
+            Name: '店铺抽奖通用活动-加密',
+            Script: 'KingRan_KR/jd_luck_draw.js',
             ListenEnv: [
-                'jd_task_wuxian_custom',
-                'jd_task_hudong_custom',
+                // 'jd_task_wuxian_custom',
+                // 'jd_task_hudong_custom',
                 'LUCK_DRAW_URL',
             ],
             SetEnv: {
-                jd_task_hudong_custom: 'jd_task_wuxian_custom',
-                LUCK_DRAW_URL: 'jd_task_wuxian_custom',
+                // jd_task_hudong_custom: 'jd_task_wuxian_custom',
+                LUCK_DRAW_URL: 'LUCK_DRAW_URL',
             },
             TimeOut: 50,
             Interval: 0,
@@ -41,38 +41,123 @@ let RspyList = {
             Disable: false,
         },
         {
-            Name: '集卡',
-            Script: 'jd_task_jika.js',
+            Name: '集卡抽奖通用活动',
+            Script: 'KingRan_KR/jd_wxCollectCard.js',
             ListenEnv: ['M_WX_COLLECT_CARD_URL', 'jd_wxCollectCard_activityId'],
             SetEnv: {
-                M_WX_COLLECT_CARD_URL: 'jd_task_jika_custom',
-                jd_wxCollectCard_activityId: 'jd_task_jika_custom',
+                M_WX_COLLECT_CARD_URL: 'M_WX_COLLECT_CARD_URL',
+                jd_wxCollectCard_activityId: 'jd_wxCollectCard_activityId',
             },
-            TimeOut: 80,
+            TimeOut: 80,    
             Interval: 0,
             RunPanel: [0],
             Disable: false,
         },
         {
-            Name: '组队',
-            Script: 'jd_task_cjzlzd.js',
-            ListenEnv: ['jd_task_cjzlzd_custom', 'jd_cjhy_activityId', 'jd_zdjr_activityId', 'M_WX_TEAM_URL'],
+            Name: 'CJ组队瓜分京豆-加密	',
+            Script: 'KingRan_KR/jd_cjzdgf.js',
+            ListenEnv: ['jd_task_cjzlzd_custom', 'jd_cjhy_activityId', 'jd_zdjr_activityId', 'M_WX_TEAM_URL','jd_cjhy_activityUrl'],
             SetEnv: {
-                jd_cjhy_activityId: 'jd_task_cjzlzd_custom',
-                jd_zdjr_activityId: 'jd_task_cjzlzd_custom',
-                M_WX_TEAM_URL: 'jd_task_cjzlzd_custom',
+                jd_cjhy_activityId: 'jd_cjhy_activityId',
+                jd_zdjr_activityId: 'jd_zdjr_activityId',
+                jd_cjhy_activityUrl: 'jd_cjhy_activityUrl',
             },
             TimeOut: 0,
             Interval: 0,
             RunPanel: [0],
             Disable: false,
         },
+        {
+            Name: '加购有礼 · 超级无线',
+            Script: 'KingRan_KR/jd_wxCollectionActivity.js',
+            ListenEnv: ['jd_wxCollectionActivity_activityUrl',],
+            SetEnv: {
+                jd_wxCollectionActivity_activityUrl: 'jd_wxCollectionActivity_activityUrl',
+            },
+            TimeOut: 0,
+            Interval: 0,
+            RunPanel: [0],
+            Disable: false,
+        },
+        {
+            Name: '分享有礼',
+            Script: 'KingRan_KR/jd_wxShareActivity.js',
+            ListenEnv: ['jd_wxShareActivity_activityId',],
+            SetEnv: {
+                jd_wxShareActivity_activityId: 'jd_wxShareActivity_activityId',
+            },
+            TimeOut: 0,
+            Interval: 0,
+            RunPanel: [0],
+            Disable: false,
+        },
+        {
+            Name: '购物车锦鲤通用活动',
+            Script: 'KingRan_KR/jd_wxCartKoi.js',
+            ListenEnv: ['jd_wxCartKoi_activityId',],
+            SetEnv: {
+                jd_wxCartKoi_activityId: 'jd_wxCartKoi_activityId',
+            },
+            TimeOut: 0,
+            Interval: 0,
+            RunPanel: [0],
+            Disable: false,
+        },
+        {
+            Name: 'LZ刮刮乐抽奖通用活动',
+            Script: 'KingRan_KR/jd_drawCenter.js',
+            ListenEnv: ['jd_drawCenter_activityId',],
+            SetEnv: {
+                jd_drawCenter_activityId: 'jd_drawCenter_activityId',
+            },
+            TimeOut: 0,
+            Interval: 0,
+            RunPanel: [0],
+            Disable: false,
+        },
+        {   
+            Name: 'LZ让福袋飞',
+            Script: 'KingRan_KR/jd_wxUnPackingActivity.js',
+            ListenEnv: ['jd_wxUnPackingActivity_activityId',],
+            SetEnv: {
+                jd_wxUnPackingActivity_activityId: 'jd_wxUnPackingActivity_activityId',
+            },
+            TimeOut: 0,
+            Interval: 0,
+            RunPanel: [0],
+            Disable: false,
+        },
+        {   
+            Name: '关注店铺有礼',
+            Script: 'KingRan_KR/jd_wxShopFollowActivity.js',
+            ListenEnv: ['jd_wxShopFollowActivity_activityUrl',],
+            SetEnv: {
+                jd_wxShopFollowActivity_activityUrl: 'jd_wxShopFollowActivity_activityUrl',
+            },
+            TimeOut: 0, 
+            Interval: 0,
+            RunPanel: [0],
+            Disable: false,
+        },
+        {   
+            Name: '加购有礼（lzkj_loreal）',
+            Script: 'KingRan_KR/jd_lzkj_loreal_cart.js',
+            ListenEnv: ['jd_lzkj_loreal_cart_url',],
+            SetEnv: {
+                jd_lzkj_loreal_cart_url: 'jd_lzkj_loreal_cart_url',
+            },
+            TimeOut: 0, 
+            Interval: 0,
+            RunPanel: [0],
+            Disable: false,
+        },
+        
     ],
     /* 监控列表 */
     ListenList: [
         {
-            Name: '备注1',
-            Id: '-1001744932665',
+            Name: '来薅线报通知',
+            Id: '-1001749005484',
         },
         {
             Name: '备注2',
@@ -97,9 +182,9 @@ let RspyList = {
     ListMode: 2,
     /* 运行日志输出位置,例如错误运行日志/任务运行成功等日志,只能设置1个 */
     runLogsInfo: {
-        platform: 'tgBot', //发送平台
-        toGroupOrUser: 'groupId', //通知类型,个人userId //群groupId
-        Id: '-1001744932665', //个人id 或群id
+        platform: 'HumanTG', //发送平台
+        toGroupOrUser: 'userId', //通知类型,个人userId //群groupId
+        Id: '1919577580', //个人id 或群id
     },
     /* 静默后监控结果输出位置  可填多个*/
     TabooLogsInfo: [
@@ -109,9 +194,9 @@ let RspyList = {
         // 	Id: "-1001744932665"
         // },
          {
-             platform: 'tgBot', //发送平台
-             toGroupOrUser: 'groupId', //通知类型,个人userId //群groupId
-             Id: '-1001704263871', //个人id 或群id
+             platform: 'HumanTG', //发送平台
+             toGroupOrUser: 'userId', //通知类型,个人userId //群groupId
+             Id: '1919577580', //个人id 或群id
          },
     ],
 };
