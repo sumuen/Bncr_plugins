@@ -53,7 +53,7 @@ const pinDB = new BncrDB("pinDB");
 module.exports = async s => {
 
     //撤回消息等待时间，tgbot、wx目前傻妞不支持撤回
-    const deleteMsgTime = 20;
+    const deleteMsgTime = 0;
 
     //白嫖检索时 红包过期超过多少通知，默认5
     const redHighest = 5;
