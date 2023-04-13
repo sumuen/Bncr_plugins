@@ -14,7 +14,7 @@
 const axios = require('axios');
 const AmTool = require('./mod/AmTool');
 const sysDB = new BncrDB('system');
-
+const { exec } = require('child_process');
 async function getPublicIp() {
   try {
     const response = await axios.get('https://ip.useragentinfo.com/json');
@@ -24,7 +24,15 @@ async function getPublicIp() {
     console.error('获取公共IP地址时发生错误:', error);
   }
 }
-
+function restartContainer(containerNameOrId) {
+  exec(`docker restart ${containerNameOrId}`, (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error restarting container: ${error}`);
+    } else {
+      console.log(`Container restarted: ${stdout}`);
+    }
+  });
+}
 module.exports = async s => {
   const v4DB = (await sysDB.get('publicIpv4')) || [];
   const nowV4ip = await getPublicIp();
@@ -35,10 +43,12 @@ module.exports = async s => {
 
   if (!v4DB.includes(nowV4ip)) {
     if (v4DB.length >= 2) {
-      logs += '重启中...';
+      logs += '进行bncr与docker重启...';
       open = true;
       // 删除旧的 IP 地址
       v4DB.shift();
+      // 重启指定的 Docker 容器,旨在解决ws反向链接假死
+      restartContainer('go-cqhttp');
     }
     // 保存新的 IP 地址
     v4DB.push(nowV4ip);
