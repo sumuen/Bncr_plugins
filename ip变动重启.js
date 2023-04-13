@@ -2,7 +2,7 @@
  * @author Aming
  * @name ip变动重启bncr以及docker
  * @origin muzi
- * @version 1.0.3
+ * @version 1.0.4
  * @description ip变动重启for双拨
  * @rule ^ip$
  * @priority 1000
@@ -47,7 +47,7 @@ module.exports = async s => {
   logs += `本次ip:${(nowV4ip && AmTool.Masking(nowV4ip, 5, 6)) || '空'}\n`;
   let open = false;
 
-  if (!v4DB.includes(nowV4ip)) {
+  if (!v4DB.includes(nowV4ip) && v4DB.length > 0 && v4DB[v4DB.length - 1] !== nowV4ip) {
     if (v4DB.length >= 2) {
       logs += '进行bncr与docker重启...';
       open = true;
@@ -60,13 +60,8 @@ module.exports = async s => {
     v4DB.push(nowV4ip);
     await sysDB.set('publicIpv4', v4DB);
     await sysDB.set('lastCheckedIp', nowV4ip);
-    const testLastCheckedIp = await sysDB.get('lastCheckedIp');
-    console.log('Test Last Checked IP:', testLastCheckedIp);
-
-
   }
-  const setResult = await sysDB.set('lastCheckedIp', nowV4ip);
-  console.log('Set Result:', setResult);
+
   await s.reply(logs);
   open && (s.getFrom() === 'cron' ? sysMethod.inline('重启') : s.inlineSugar('重启'));
 };
