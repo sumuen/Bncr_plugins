@@ -9,7 +9,7 @@
  * @admin true
  * @public false
  * @disable false
- * @cron 0 *\/3 * * * *
+ * @cron 0 *\/5 * * * *
  */
 const axios = require('axios');
 const AmTool = require('./mod/AmTool');
