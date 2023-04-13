@@ -7,7 +7,7 @@
  * @rule ^(删除自动回复) ([^\n]+)$
  * @rule ^(添加自动回复) ([^\n]+) ([\s\S]+)$
  * @rule ^(自动回复列表)$
- * @rule [\s\S]+
+ * @rule 回复[\s\S]+
  * @priority 1
  * @admin false
  * @disable false

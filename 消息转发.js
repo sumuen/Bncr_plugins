@@ -4,7 +4,7 @@
  * @origin 红灯区
  * @version v1.0.0
  * @name 消息转发
- * @rule [\s\S]+
+ * @rule 转发[\s\S]+
  * @priority 100000
  * @admin false
  * @disable false
