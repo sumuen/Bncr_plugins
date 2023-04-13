@@ -1,6 +1,6 @@
 /**
  * @author Aming
- * @name ip变动重启
+ * @name ip变动重启bncr以及docker
  * @origin muzi
  * @version 1.0.0
  * @description ip变动重启for双拨
