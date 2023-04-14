@@ -1,5 +1,5 @@
 /**
- * @author Aming
+ * @author muzi
  * @name ip变动重启bncr以及docker
  * @origin muzi
  * @version 1.1.0
