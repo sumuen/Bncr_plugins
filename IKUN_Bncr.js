@@ -16,8 +16,8 @@ const fs = require('fs');
 const { randomUUID } = require('crypto');
 
 module.exports = async s => {
-    let imageURL = `http://api.caonm.net/api/kun/k.php`,
-        audioURL = `http://api.caonm.net/api/kunkun/k.php`,
+    let imageURL = `http://api.caonm.net/api/kun/k?key=`,
+        audioURL = `http://api.caonm.net/api/kunkun/k?key=`,
         open = false,
         localImagePath = null,
         localAudioPath = null;
@@ -43,7 +43,7 @@ module.exports = async s => {
         path: localImagePath,
     });
     }
-    else if (['qq'].includes(s.getFrom())) {
+    else if (['qq' || 'qq2'].includes(s.getFrom())) {
         await s.reply(ikun_yvlu())
         await s.reply({
             type: 'image',

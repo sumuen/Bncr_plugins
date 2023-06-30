@@ -2,7 +2,7 @@
  * @author muzi
  * @name EpicStore免费游戏查询
  * @origin Adapted from a Python script
- * @version 1.1.0
+ * @version 1.0.0
  * @description Epic Games Store免费游戏查询
  * @rule ^epic$
  * @admin false
@@ -21,12 +21,8 @@ const senders = [
         type: 'groupId',
     },
 ];
-const cheerio = require('cheerio');
-const axios = require('axios');
-const xml2js = require('xml2js');
 const got = require('got');
 const dayjs = require('dayjs');
-const htmlToText = require('html-to-text');
 const request = require('request');
 const fs = require('fs');
 const path = require('path');
@@ -42,6 +38,7 @@ const fetchFreeGames = async () => {
     const now = dayjs();
     const items = response.data.Catalog.searchStore.elements
         .filter(
+            //结构化数据
             (item) =>
                 item.promotions &&
                 item.promotions.promotionalOffers &&
@@ -84,7 +81,7 @@ const fetchFreeGames = async () => {
         });
     return await Promise.all(items);
 };
-// 解析RSS Feed的时间戳
+// 解析时间戳
 function formatTime(timestamp) {
     const date = new Date(timestamp);
     return `${date.getFullYear()}年${date.getMonth() + 1
