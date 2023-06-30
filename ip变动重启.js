@@ -2,7 +2,7 @@
  * @author muzi
  * @name ip变动重启bncr以及docker
  * @origin muzi
- * @version 1.1.0
+ * @version 1.1.1
  * @description ip变动重启for双拨，多拨，需要在bncr容器中安装docker，apk add --no-cache docker-cli并重启容器，我是为了重启外部qq,go-cqhttp容器，所以重启go-cqhttp容器，如果你的qq容器名不是go-cqhttp，那么请自行修改
  * @rule ^ip$
  * @priority 1000
@@ -21,11 +21,11 @@ const maxIPCount = 3; // 设 置 IP 数量（双拨、多拨等）
 //获取ip
 async function getPublicIp() {
   try {
-    const response = await axios.get("https://ip.useragentinfo.com/json", {
+    const response = await axios.get("http://ip-api.com/json", {
       timeout: 10000,
     }); // 设置 10 秒超时
     const data = response.data;
-    return data.ip;
+    return data.query;
   } catch (error) {
     console.error("获取公共IP地址时发生错误:", error);
     return null;
@@ -74,6 +74,16 @@ module.exports = async (s) => {
       } else {
         if (lastRestartTime && !isPast(addMinutes(lastRestartTime, 2))) {
           console.log('距离上次重启未满2分钟，不执行重启')
+          // 如果不在 deletedIps 中，判断 v4DB 的长度是否大于等于 maxIPCount
+          if (v4DB.length >= maxIPCount) {
+            const removedIp = v4DB.shift();
+            deletedIps.shift();
+            deletedIps.push(removedIp);
+            await sysDB.set("deletedIps", deletedIps);
+          }
+          v4DB.push(nowV4ip);
+          //将当前IP添加到v4DB
+          await sysDB.set("publicIpv4", v4DB); //保存到数据库
         } else {
           logs += "进行bncr与docker重启...";
           open = true;
